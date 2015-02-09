@@ -1,0 +1,201 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[landscape, left=1cm,right=1cm, top=0cm, bottom=1cm,includeheadfoot]{geometry}
+\usepackage[utf8]{inputenc}   % Zeichenkodierung: UTF-8 (für Umlaute)   
+\usepackage[german]{babel}    % Deutsche Sprache
+\usepackage{multicol}     % Spaltenpaket
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}     % ermöglicht Seitenspalten  
+\usepackage{wasysym}      % Blitz
+\usepackage{graphicx}
+\usepackage{xcolor}
+\KOMAoption{fontsize}{10pt}
+\usepackage{blindtext}
+\usepackage{tikz} 
+
+
+\begin{document}
+\begin{multicols}{3}
+
+\section{Basics (Non-FM)}
+
+\textbf{Erwartungswert:}
+$$E[X]=\mu=\sum_{i \in I} p_i x_i $$
+\textbf{Varianz:}
+\begin{equation*}
+\begin{split}
+Var[X]&=\sigma^2\\
+      &=E[(X-E[X])^2]\\
+      &=E[X^2]-E[X]^2\\
+\end{split}
+\end{equation*}
+\textbf{Kovarianz:}
+$$Cov[X,Y]=E[(X-E[X])(Y-E[Y])]$$
+\textbf{Korrelationskoeffizient:}
+\begin{equation*}
+\begin{split}
+    Corr[X,Y] &= \varrho [X,Y]\\
+              &= \frac{Cov[X,Y]}{\sigma (X) \sigma (Y)}\\
+              &= \frac{Cov[X,Y]}{\sqrt{Var[X]}\sqrt{Var[Y]}}\\
+\end{split}
+\end{equation*}
+\textbf{p,q Formel:}
+$$x_{1,2}=\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+
+\section{Entscheidungstheorie}
+\subsection{Dominanzkonzept}
+
+\begin{equation*}
+\begin{split}
+       & \text{A dominiert B strikt} \\
+     \Leftrightarrow & \forall t \in T : e_{A,t} > e_{B,t}\\
+       & \text{A dominiert B (schwach)} \\
+     \Leftrightarrow & \forall t \in T : e_{A,t} \geq e_{B,t} \wedge \exists t \in T : e_{A,t} > e_{B,t}\\
+\end{split}
+\end{equation*}
+Das heißt, dass A zu allen Zeitpunkten größer oder gleich und mindestens ein mal echt größer als B ist.\\
+Ist eine Alternative nicht dominiert, dann ist sie effizient. Gibt es nur eine effiziente, ist es die dominante Alternative.
+
+\subsection{Erwartungsnutzentheorie}
+
+\textbf{Eigenschaft eines Marktteilnehmers:}
+\begin{equation*}
+\begin{split}
+     \text{Risikoaversion}    &\Leftrightarrow E[U(X)] < U(E[X]) \\
+     \text{Risikoneutralität} &\Leftrightarrow E[U(X)] = U(E[X]) \\
+     \text{Risikofreude}      &\Leftrightarrow E[U(X)] > U(E[X]) \\
+\end{split}
+\end{equation*}
+\textbf{Sicherheitsäquivalent (CE):}
+\begin{equation*}
+\begin{split}
+U(CE) &= E[U(X)]\\
+   CE &= U^{-1}(E[U(X)])\\
+\end{split}
+\end{equation*}
+\textbf{Risikoprämie (RP):}
+$$RP = E[X] - CE$$
+
+\subsection{Erwartungswert-Varianz-Prinzip}
+
+\textbf{Sicherheitsäquivalent} (CE):
+$$\varphi(CE, 0) = \varphi(\mu, \sigma) $$
+\textbf{Risikoprämie (RP):}
+$$RP = E[X] - CE$$
+\textbf{Merke:} ($\mu$,$\sigma$)-Prinzip steht nur bei quadratischen und
+exponientiellen Nutzenfunktionen im Einklang mit dem Bernullidingens
+
+\section{Investitionsrechnung}
+
+\subsection{Finanzmathematik}
+
+\textbf{Endwert} (aufzinsen)(terminal value):
+\begin{equation*}
+\begin{split}
+EW &= z_1(1+i)^{T-1} + \dots + z_{T-1}(1+i) + Z_T \\
+   &= \sum^T_{t=1} z_t (1+i)^{T-t}\\
+\end{split}
+\end{equation*}
+\textbf{Barwert} (abzinsen)(present value, Gegenwartswert):
+\begin{equation*}
+\begin{split}
+BW &= \frac{z_1}{1+i}+\frac{z_2}{(1+i)^2}+\dots+\frac{z_T}{(1+i)^T}\\
+     &= \sum^T_{t=\color{red}{\textbf{1}}}\frac{z_t}{(1+i)^t}\\
+\end{split}
+\end{equation*}
+\textbf{Kapitalwert} (abzinsen)(net present value‚ Nettogegenwartswert, Nettobarwert)
+$$KW = \sum^T_{t=\color{red}{\textbf{0}}}\frac{z_t}{(1+i)^t}$$
+\textbf{Merke:} Bei PV wird die Anfangsauszahlung nicht abgezogen, beim NPV schon.
+
+\subsection{Investitionsrechnung}
+
+\color{gray}
+Konvergenz geometrischer Reihen:
+$$|\delta|<1 \rightarrow \sum^T_{t=0}\delta^t=\frac{1}{1-\delta}$$
+$$ \Rightarrow i > 0 \rightarrow \iff \implies \sum^T_{t=0}\left(\frac{1}{1+i}\right)^t  = \frac{1+i}{i}$$
+\color{black}
+\textbf{Ewige Rente (Zahlungsbeginn k):}
+$$KW = \sum^{\infty}_{t=\color{red}{\textbf{k}}}\frac{A}{(1+i)^t}=\frac{A}{i}(1+i)^{\color{red}{\textbf{1-k}}}$$
+\textbf{Ewige, nachschüssige Rente:}
+$$KW = \sum^{\infty}_{t=\color{red}{\textbf{1}}}\frac{A}{(1+i)^t}=\frac{A}{i}$$
+\textbf{Ewige, vorschüssige  Rente:}
+$$KW = \sum^{\infty}_{t=\color{red}{\textbf{0}}}\frac{A}{(1+i)^t}=\frac{A}{i}(1+i)^{\color{lightgray}{\textbf{1}}}$$
+\textbf{KW $\sim$ EW:}
+\begin{equation*}
+\begin{split}
+&EW = KW (1+i)^{T}\\
+\iff &KW = EW (1+i)^{-T} \\
+\end{split}
+\end{equation*}
+\textbf{Annuität}:\\
+Eine zur Zahlungsreihe $z_t$ ($t$ = 0, 1, ..., T) äquivalente Annuität ist eine Reihe 
+gleich hoher Zahlungen A zu den Zeitpunkten 1, 2, ..., T, deren Kapitalwert 
+gleich dem der ursprünglichen Zahlungsreihe ist.
+\begin{equation*}
+\begin{split}
+KW &= \sum^T_{t=1}\frac{A}{(1+i)^t}\\
+KW &= \color{cyan}\underbrace{\frac{A}{i}}_\text{Ewige Rente (k=1)}
+      \color{black}-
+      \color{magenta}\underbrace{\frac{A}{i}\cdot\frac{1}{(1+i)^T}}_\text{Ewige Rente (k=T)}\\
+KW &= \color{orange}A \underbrace{\left(\frac{1}{i}-\frac{1}{i(1+i)^T}\right)}_\text{Rentenbarwertfaktor}\\
+A  &= KW \underbrace{\left(\frac{i(1+i)^T}{(1+i)^T-1}\right)}_\text{Annuitätenfaktor}\\
+\end{split}
+\end{equation*}
+\begin{center}
+  \begin{tikzpicture}
+    \draw [|-latex,line width=1pt, cyan] (0,1.0) -- node[above] {1, 2, 3, \dots} (8,1.0);
+    \draw [|-latex,line width=1pt, magenta] (5,0.5) -- node[above] {T+1, \dots} (8,0.5);
+    \draw [|-|,line width=1pt, orange] (0,0.0) -- node[above] {1, 2, 3, \dots, T} (5,0.0);
+  \end{tikzpicture}
+\end{center}
+\textbf{Interner Zins:}
+
+\subsection{Preinreich-Lücke-Theorem}
+
+\textbf{Kongruenzprinzip (1):}
+$$\sum^{T}_{t=0} (e_t-a_t) = \sum^{T}_{t=0} (L_t-K_t)$$
+\textbf{Residualgewinn (2):}
+$$RG_t=\underbrace{L_t-K_t}_\text{Periodengewinn}-\underbrace{i \cdot KB_{t-1}}_\text{Kapitalbindungszinsen}$$
+\textbf{Preinreich-Lücke-Theorem:}
+\begin{equation*}
+\begin{split}
+\sum^{T}_{t=0} \frac{RG_t}{(1+i)^t} 
+  &\overset{(2)}{=} \sum^{T}_{t=0} \frac{L_t - K_t - i \cdot KB_{t-1}}{(1+i)^t}\\
+  &\overset{(1)}{\equiv} \sum^{T}_{t=0} \frac{e_t - a_t}{(1+i)^t}
+  = \sum^{T}_{t=0} \frac{cf_t}{(1+i)^t}
+  =: KW
+\end{split}
+\end{equation*}
+
+\section{Capital Asset Pricing Model (CAPM)}
+
+\blindtext
+
+\section{Unternehmens- und Projektbewertung}
+
+\blindtext
+
+\section{Performancemaße}
+
+\blindtext
+
+\section{Investitionssteuerung}
+
+\blindtext
+\blindtext
+\blindtext
+\blindtext
+\blindtext
+\blindtext
+\blindtext
+\blindtext
+\blindtext
+\blindtext
+\blindtext
+\blindtext
+\blindtext
+
+\end{multicols}
+\end{document}
+
+
