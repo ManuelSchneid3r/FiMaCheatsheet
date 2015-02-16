@@ -1,5 +1,5 @@
 \documentclass[leqno]{scrartcl}
-\usepackage[a3paper,landscape, left=1cm,right=1cm, top=0cm, bottom=1cm,includeheadfoot]{geometry}
+\usepackage[a3paper, landscape,left=1cm,right=1cm, top=0cm, bottom=1cm,includeheadfoot]{geometry}
 \usepackage[utf8]{inputenc}   % Zeichenkodierung: UTF-8 (für Umlaute)   
 \usepackage[german]{babel}    % Deutsche Sprache
 \usepackage{multicol}     % Spaltenpaket
@@ -9,7 +9,7 @@
 \usepackage{wasysym}      % Blitz
 \usepackage{graphicx}
 \usepackage{xcolor}
-\KOMAoption{fontsize}{11pt}
+\KOMAoption{fontsize}{12pt}
 \usepackage{blindtext}
 \usepackage{tikz}
 \usepackage{enumitem}
@@ -31,6 +31,8 @@
 \begin{document}
 \begin{multicols}{4}
 
+%-------------------------------------------------------------------------------
+
 \section{Basics (Non-FM)}
 
 \textbf{Erwartungswert:}
@@ -41,8 +43,8 @@
   \begin{equation*}
     \begin{split}
       Var[X]&=\sigma^2\\
-          &=E[(X-E[X])^2]\\
-          &=E[X^2]-E[X]^2\\
+      Var[X]&=E[(X-E[X])^2]\\
+      Var[X]&=E[X^2]-E[X]^2\\
     \end{split}
   \end{equation*}
 \textbf{Kovarianz:}
@@ -56,14 +58,19 @@
   \begin{equation*}
     \begin{split}
       Corr[X,Y] &= \varrho [X,Y]\\
-                &= \frac{Cov[X,Y]}{\sigma (X) \sigma (Y)}\\
-                &= \frac{Cov[X,Y]}{\sqrt{Var[X]}\sqrt{Var[Y]}}\\
+      Corr[X,Y] &= \frac{Cov[X,Y]}{\sigma (X) \sigma (Y)}\\
     \end{split}
   \end{equation*}
-\textbf{p,q Formel:}
+\textbf{a-b-c Formel:}
   \begin{equation*}
     x_{1,2}=\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
   \end{equation*}
+\textbf{p-q Formel:}
+  \begin{equation*}
+    x_{1,2}=-\frac{p}{2}\pm\sqrt{\left(\frac{p}{2}\right)^2-q}
+  \end{equation*}
+
+%-------------------------------------------------------------------------------
 
 \section{Entscheidungstheorie}
 
@@ -121,6 +128,8 @@ effizient. Gibt es nur eine effiziente, ist es die dominante Alternative.
 \textbf{Merke:} ($\mu$,$\sigma$)-Prinzip steht nur bei quadratischen und
 exponientiellen Nutzenfunktionen im Einklang mit dem Bernulliding
 
+%-------------------------------------------------------------------------------
+
 \section{Investitionsrechnung}
 
 \subsection{Finanzmathematik}
@@ -129,14 +138,14 @@ exponientiellen Nutzenfunktionen im Einklang mit dem Bernulliding
   \begin{equation*}
     \begin{split}
       EW &= z_1(1+i)^{T-1} + \dots + z_{T-1}(1+i) + Z_T \\
-        &= \sum^T_{t=1} z_t (1+i)^{T-t}\\
+      EW &= \sum^T_{t=1} z_t (1+i)^{T-t}\\
     \end{split}
   \end{equation*}
 \textbf{Barwert} (abzinsen)(present value, Gegenwartswert):
   \begin{equation*}
     \begin{split}
       BW &= \frac{z_1}{1+i}+\frac{z_2}{(1+i)^2}+\dots+\frac{z_T}{(1+i)^T}\\
-          &= \sum^T_{t=\color{red}{\textbf{1}}}\frac{z_t}{(1+i)^t}\\
+      BW &= \sum^T_{t=\color{red}{\textbf{1}}}\frac{z_t}{(1+i)^t}\\
     \end{split}
   \end{equation*}
 \textbf{Kapitalwert} (abzinsen)(net present value‚ Nettogegenwartswert, Nettobarwert)
@@ -147,16 +156,12 @@ exponientiellen Nutzenfunktionen im Einklang mit dem Bernulliding
 
 \subsection{Investitionsrechnung}
 
-\textbf{Konvergenz geometrischer Reihen:}
-  \begin{equation*}\label{convergence}
-    \begin{split}
-    |\delta|<1 \rightarrow \sum^T_{t=0}\delta^t=\frac{1}{1-\delta}\\
-    \implies \forall i > 0 : \sum^T_{t=0}\left(\frac{1}{1+i}\right)^t  = \frac{1+i}{i}\\
-    \end{split}
-  \end{equation*}
+Nach(Vor)schüssig bedeutet, dass Zahlungen direkt nach(vor) dem Zins 
+stattfinden. D.h. für den EW, dass ein mal weniger(mehr) verzinst wird und für 
+den BW, dass ein mal mehr(weniger) abgezinst wird.\\
 \textbf{Ewige Rente (Zahlungsbeginn k):}
   \begin{equation*}
-    KW = \sum^{\infty}_{t=\color{red}{\textbf{k}}}\frac{A}{(1+i)^t} \overset{(\ref{convergence})}{=}\frac{A}{i}(1+i)^{\color{red}{\textbf{1-k}}}
+    KW = \sum^{\infty}_{t=\color{red}{\textbf{k}}}\frac{A}{(1+i)^t}=\frac{A}{i}(1+i)^{\color{red}{\textbf{1-k}}}
   \end{equation*}
 \textbf{Ewige, nachschüssige Rente:}
   \begin{equation*}
@@ -166,67 +171,70 @@ exponientiellen Nutzenfunktionen im Einklang mit dem Bernulliding
   \begin{equation*}
     KW = \sum^{\infty}_{t=\color{red}{\textbf{0}}}\frac{A}{(1+i)^t}=\frac{A}{i}(1+i)^{\color{lightgray}{\textbf{1}}}
   \end{equation*}
-\textbf{KW $\sim$ EW:}
-  \begin{equation*}\label{relation}
+\textbf{Konvergenz geometrischer Reihen:}
+  \begin{equation*}\label{convergence}
     \begin{split}
-    &EW = KW (1+i)^{T}\\
-    \iff &KW = EW (1+i)^{-T} \\
+    |\delta|<1 \rightarrow \sum^T_{t=0}\delta^t=\frac{1}{1-\delta}\\
+    \implies \forall i > 0 : \sum^T_{t=0}\left(\frac{1}{1+i}\right)^t  = \frac{1+i}{i}\\
     \end{split}
   \end{equation*}
 \textbf{Annuität}:\\
-  Eine zur Zahlungsreihe $z_t$ ($t$ = 0, 1, ..., T) äquivalente Annuität ist eine Reihe 
-  gleich hoher Zahlungen A zu den Zeitpunkten 1, 2, ..., T, deren Kapitalwert 
-  gleich dem der ursprünglichen Zahlungsreihe ist.
   \begin{equation*}
+    A = BW \cdot \color{cyan}ANF\color{black} = BW \color{cyan}\left(\frac{(1+i)^T \cdot i}{(1+i)^T-1}\right)\\
+  \end{equation*}
+\textbf{Rentenbarwert}:\\
+  \begin{equation*}
+    BW = A \cdot \color{cyan}RBF\color{black} = A  \color{cyan}\left(\frac{(1+i)^T-1}{(1+i)^T \cdot i}\right)
+  \end{equation*}
+\textbf{Rentenendwert}:\\
+  \begin{equation*}
+    BW = A \cdot \color{cyan}REF\color{black} = A  \color{cyan}\left(\frac{(1+i)^T-1}{i}\right)
+  \end{equation*}  
+\textbf{BW $\sim$ EW:}
+  \begin{equation*}\label{relation}
     \begin{split}
-      KW &= \sum^T_{t=1}\frac{A}{(1+i)^t}\\
-      KW &= \color{cyan}\underbrace{\frac{A}{i}}_\text{Ewige Rente (k=1)}
-            \color{black}-
-            \color{magenta}\underbrace{\frac{A}{i}\cdot\frac{1}{(1+i)^T}}_\text{Ewige Rente (k=T)}\\
-      KW &= A\color{orange} \underbrace{\left(\frac{1}{i}-\frac{1}{i(1+i)^T}\right)}_\text{Rentenbarwertfaktor}\\
-      KW &= A\color{orange} \underbrace{\left(\frac{(1+i)^T-1}{(1+i)^T \cdot i}\right)}_\text{Rentenbarwertfaktor}\\
-      A  &= KW \underbrace{\left(\frac{(1+i)^T \cdot i}{(1+i)^T-1}\right)}_\text{Annuitätenfaktor}\\
+    &EW = BW (1+i)^{T}\\
+    \iff &BW = EW (1+i)^{-T} \\
     \end{split}
   \end{equation*}
-\begin{center}
-  \begin{tikzpicture}
-    \draw [|-latex,line width=1pt, cyan] (0,1.0) -- node[above] {1, 2, 3, \dots} (8,1.0);
-    \draw [|-latex,line width=1pt, magenta] (5,0.5) -- node[above] {T+1, \dots} (8,0.5);
-    \draw [|-|,line width=1pt, orange] (0,0.0) -- node[above] {1, 2, 3, \dots, T} (5,0.0);
-  \end{tikzpicture}
-\end{center}
-\textbf{AF $\sim$ RBF:}
-  \begin{equation*}
-    AF = RBF^{-1}
-  \end{equation*}
-\textbf{RBF$_{nach}$ $\sim$ RBF$_{vor}$:}
-  \begin{equation*}\label{RBFsim}
-    RBF_{vor} = RBF_{nach} \cdot (1+i)
-  \end{equation*}
-Nach(Vor)schüssig bedeutet, dass Zahlungen direkt nach(vor) dem Zins 
-stattfinden. D.h. für den EW, dass ein mal weniger(mehr) verzinst wird und für 
-den BW, dass ein mal mehr(weniger) abgezinst wird.\\
-\textbf{Rentenbarwert (nachschüssig):}
-  \begin{equation*}
-    BW_{nach} = A \cdot RBF_n = A \cdot \left(\frac{(1+i)^T - 1}{(1+i)^T \cdot i}\right)
-  \end{equation*}
-\textbf{Rentenbarwert (vorschüssig):}
-  \begin{equation*}
-    BW_{vor} = A \cdot RBF_v \overset{\ref{RBFsim}}{=} A \cdot \left(\frac{(1+i)^T - 1}{(1+i)^T \cdot i}\right)\color{red} \cdot (1+i) 
-  \end{equation*}
-\textbf{Rentenendwert (nachschüssig):}
-  \begin{equation*}
-    EW_{nach} = A \cdot REF_n = A \cdot \left(\frac{(1+i)^T - 1}{i}\right)
-  \end{equation*}
-\textbf{Rentenendwert (vorschüssig):}
-  \begin{equation*}
-    EW_{vor} = A \cdot REF_v \overset{\ref{RBFsim}}{=} A \cdot \left(\frac{(1+i)^T - 1}{i}\right)\color{red} \cdot (1+i)
-  \end{equation*}
-\textbf{Interner Zins:}
+\textbf{Interner Zins:}\label{internerzins}
   Es sei ($z_0, z_1, \dots, z_T$) ein Zahlungsstrom. Der interne Zins ist eine Zahl $i^*$ , die 
   die folgende Gleichung löst:
   $$0 = z_0 + \frac{z_1}{(1+i^*)^1} + \cdots + \frac{z_T}{(1+i^*)^T} = \sum^T_{t=0}\frac{z_t}{(1+i)^t}$$
   Ersetze dazu $\delta^* = \frac{1}{(1+i)^t}$ und erreche $i^* = \frac{1}{\delta^*}-1$
+  
+  
+  
+  
+  
+  
+  
+% \textbf{Annuität}:\\
+%   Eine zur Zahlungsreihe $z_t$ ($t$ = 0, 1, ..., T) äquivalente Annuität ist eine Reihe 
+%   gleich hoher Zahlungen A zu den Zeitpunkten 1, 2, ..., T, deren Kapitalwert 
+%   gleich dem der ursprünglichen Zahlungsreihe ist.
+%   \begin{equation*}
+%     \begin{split}
+%       KW &= \sum^T_{t=1}\frac{A}{(1+i)^t}\\
+%       KW &= \color{cyan}\underbrace{\frac{A}{i}}_\text{Ewige Rente (k=1)}
+%             \color{black}-
+%             \color{magenta}\underbrace{\frac{A}{i}\cdot\frac{1}{(1+i)^T}}_\text{Ewige Rente (k=T)}\\
+%       KW &= A\color{orange} \underbrace{\left(\frac{1}{i}-\frac{1}{i(1+i)^T}\right)}_\text{Rentenbarwertfaktor}\\
+%       KW &= A\color{orange} \underbrace{\left(\frac{(1+i)^T-1}{(1+i)^T \cdot i}\right)}_\text{Rentenbarwertfaktor}\\
+%       A  &= KW \underbrace{\left(\frac{(1+i)^T \cdot i}{(1+i)^T-1}\right)}_\text{Annuitätenfaktor}\\
+%     \end{split}
+%   \end{equation*}
+% \begin{center}
+%   \begin{tikzpicture}
+%     \draw [|-latex,line width=1pt, cyan] (0,1.0) -- node[above] {1, 2, 3, \dots} (8,1.0);
+%     \draw [|-latex,line width=1pt, magenta] (5,0.5) -- node[above] {T+1, \dots} (8,0.5);
+%     \draw [|-|,line width=1pt, orange] (0,0.0) -- node[above] {1, 2, 3, \dots, T} (5,0.0);
+%   \end{tikzpicture}
+% \end{center}
+
+
+  
+  
 
 \subsection{Preinreich-Lücke-Theorem}
 
@@ -242,12 +250,14 @@ den BW, dass ein mal mehr(weniger) abgezinst wird.\\
   \begin{equation*}
     \begin{split}
       \sum^{T}_{t=0} \frac{RG_t}{(1+i)^t} 
-        &\overset{\ref{Residualgewinn}}{=} \sum^{T}_{t=0} \frac{L_t - K_t - i \cdot KB_{t-1}}{(1+i)^t}\\
-        &\overset{\ref{Kongruenzprinzip}}{\equiv} \sum^{T}_{t=0} \frac{e_t - a_t}{(1+i)^t}
+        &= \sum^{T}_{t=0} \frac{L_t - K_t - i \cdot KB_{t-1}}{(1+i)^t}\\
+        &\equiv \sum^{T}_{t=0} \frac{e_t - a_t}{(1+i)^t}
         = \sum^{T}_{t=0} \frac{cf_t}{(1+i)^t}
         =: KW
     \end{split}
   \end{equation*}
+
+%-------------------------------------------------------------------------------
 
 \section{Capital Asset Pricing Model (CAPM)}
 
@@ -274,11 +284,9 @@ den BW, dass ein mal mehr(weniger) abgezinst wird.\\
 \textbf{Varianz eines Portfolios P aus n WPs:}
   \begin{equation*}
     \begin{split}
-      Var[r_P]&=\sigma_P^2\\
-          &=E[(r_p-E[r_p])^2]\\
-          &=E[r_p^2]-E[r_p]^2\\
-          &=\sum^{n}_{i=1}\sum^{n}_{j=1}a_i \cdot a_j \cdot Cov[r_i,r_j]\\
-          &\overset{\color{red}{n=2}}{=} a^2_1 \sigma^2_1 + 2a_1a_2 \cdot Cov[r_1,r_2] + a^2_2 \sigma^2_2
+      Var[r_P] &=\sigma_P^2 = E[(r_p-E[r_p])^2]\\
+      Var[r_P] &=\sum^{n}_{i=1}\sum^{n}_{j=1}a_i \cdot a_j \cdot Cov[r_i,r_j]\\
+      Var[r_{P_{2}}] &\overset{\color{red}{n=2}}{=} a^2_1 \sigma^2_1 + 2a_1a_2 \cdot Cov[r_1,r_2] + a^2_2 \sigma^2_2
     \end{split}
   \end{equation*}
 \textbf{Kovarianz zweier Wertpapiere:}
@@ -287,32 +295,27 @@ den BW, dass ein mal mehr(weniger) abgezinst wird.\\
   \end{equation*}
 \textbf{Korrelation zweier Wertpapiere:}
   \begin{equation*}
-    \begin{split}
-      Corr[r_i,r_j] &= \varrho [r_i,r_j] \in [-1,1]\\
-                    &= \frac{Cov[r_i,r_j]}{\sigma (r_i) \cdot \sigma (r_j)}\\
-    \end{split}
+      Corr[r_i,r_j] = \varrho_{i,j} = \frac{Cov[r_i,r_j]}{\sigma_i \cdot \sigma_j}\in [-1,1]\\
   \end{equation*}
 \textbf{Bedingungen für effiziente Portfolios:}
   \begin{enumerate}
     \item Portfolio minimiert bei gegebener erwarteter Rendite die Varianz
     \item Portfolio wird nicht dominiert
   \end{enumerate}
+  
 \subsubsection{Kombination von Portfolio $M$ mit risikoloser Anlage $f$:}
-Investor mischt $P$ mit einem sicheren Wertpapier $f$ mit der Rendite $r_f$ ($P(b)$). Anteil von $f$ betrage $(1 - b)$.\\
+
+Investor mischt $M$ mit einem sicheren Wertpapier $f$ mit der Rendite $r_f$ . Anteil von $f$ betrage $(1 - b)$.\\
 \textbf{Erwartete Rendite:}
   \begin{equation*}
     \begin{split}
-      E[r_K]&=(1-b) \cdot r_f + b \cdot E[r_M]\\
-                 &=r_f + b \cdot (E[r_M ] - r_f)
+      E[r_K] &= (1-b) \cdot r_f + b \cdot E[r_M]\\
+      E[r_K] &= r_f + b \cdot (E[r_M ] - r_f)
     \end{split}
   \end{equation*}
 \textbf{Varianz:}
   \begin{equation*}
-    \begin{split}
-      Var[r_K] &= (1-b)^2 \cdot \overbrace{Var[r_f]}^{0}+ b^2 \cdot Var[r_M]\\
-               &+ 2 \cdot (1-b) \cdot b \cdot \underbrace{Cov[r_f ,r_M ]}_{0}\\
-               &= b^2 \cdot Var[r_M0]
-    \end{split}
+      Var[r_K] = b^2 \cdot Var[r_M]
   \end{equation*}
 \subsubsection{CAPM:}
 \textbf{Annahmen:}
@@ -327,7 +330,7 @@ Investor mischt $P$ mit einem sicheren Wertpapier $f$ mit der Rendite $r_f$ ($P(
       \item[$\bullet$] Keine Arbitragemöglichkeiten
     \end{itemize}
   \end{itemize} 
-\textbf{Kapitalmarktlinie (Zweipunkteform mit $x_1=0$):}
+\textbf{Kapitalmarktlinie:}
   \begin{equation*}
     \mu_{KML} = r_f + \frac{\mu_M - r_f}{\sigma_M}\cdot \sigma_{KML}
   \end{equation*}
@@ -338,69 +341,70 @@ Investor mischt $P$ mit einem sicheren Wertpapier $f$ mit der Rendite $r_f$ ($P(
     \end{split}
   \end{equation*}
 
-\subsection{Schätzung der Kapitalkosten}
+%-------------------------------------------------------------------------------
 
-  \begin{equation*}
-  \end{equation*}
-  \begin{equation*}
-  \end{equation*}
-
-%\section{Unternehmens- und Projektbewertung}
-%\subsection{DCF-Verfahren}
-%\subsection{Unternehmensbewertung mit Steuern}
-%\subsection{Wertermittlung mit Gewinnen}
-
-\section{Performancemaße}
-
-
-\subsection{Absolute Kennzahlen und Performancemaße}
-Economic Value Added (EVA), Cash Value Added (CVA)
-
-
+\section{Kennzahlen und Performancemaße}
 
 \subsection{Relative Kennzahlen und Performancemaße}
 
 \textbf{Return on Investment (ROI):}
   \begin{equation*}
-    ROI_t = \frac{\text{Gewinn}_t}{\text{(Rest-)Buchwert des Eigenkapital}_{t-1}}
+    ROI_t = \frac{\text{Gewinn}_t}{\text{(Rest-)Buchwert des Eigenkapital}_{t-1}} = \frac{cf_t-ab_t}{KB_{t-1}}
   \end{equation*}
-  
 \textbf{Cashflow Return on Investment (CFROI):}
   \begin{equation*}
-    CFROI_t = \frac{BCF_t-AB^{\text{öko}}}{BIB_0}
+    CFROI_t = \frac{cf_t-ab^{\text{öko}}}{BIB_0}
   \end{equation*}
-  
-  Interner Zins
-
-
-
-\subsection{Bemessungsgrundlagen für Bonussysteme}
-\subsection{Beispiele zur Anreizwirkung}
-\subsection{Verfeinerung des Residualgewinnkonzeptes}
-
-\textbf{Residualgewinn: (KLR)}
   \begin{equation*}
-    RG_t = cf_t - ab_t - i\cdot KB_{t-1}
+    ab^{\text{öko}} = (BIB_0 - BIB^{\text{nicht abschreibar}}_0) \cdot \frac{i}{(1+i)^T-1}
+  \end{equation*}
+\textbf{Interner Zins: (Siehe \ref{internerzins})}
+  
+\subsection{Absolute Kennzahlen und Performancemaße}
+
+\textbf{Cash Value Added (CVA):}
+  \begin{equation*}
+  \begin{split}
+    CVA_t &= (CFROI_t - i_t) \cdot BIB_0\\
+          &= cf_t-ab^{\text{öko}}- i\cdot BIB_0
+  \end{split}
+  \end{equation*}
+\textbf{Economic Value Added (EVA) bzw.}\\
+\textbf{Residualgewinn: (in KLR, vgl. \ref{Residualgewinn})}
+  \begin{equation*}
+    EVA_t = RG_t = cf_t - ab_t - i\cdot KB_{t-1}
   \end{equation*}
 \textbf{Heidgens Tipp zur degresiven Abschreibung:}
   \begin{equation*}
     KB_t = KB_0(1-\delta)^t
   \end{equation*}
 \textbf{Residualgewinn (Degresive Abschreibung):}
-  \begin{equation*}
+  \begin{equation*} 
     RG_t = cf_t - KB_0(i+\delta)(1-\delta)^{t-1}
   \end{equation*}
 
+%-------------------------------------------------------------------------------
+
 \section{Investitionssteuerung}
+
 \textbf{Performancemaß Modell allgemein:}
   \begin{equation*}
-    \prod_{t,i} = \alpha_{t,i} \cdot cf_{t,i} + \beta_{t,i} \cdot b_{0,i}
+    PM_{t,i} = \alpha_{t,i} \cdot cf_{t,i} + \beta_{t,i} \cdot b_{0,i}
+  \end{equation*}
+\textbf{Strukturparameter:}
+  \begin{equation*}
+    x_{t,i} =
+  \end{equation*}
+\textbf{Zusammenhang Cashflow Strukturparameter:}
+  \begin{equation*}
+    cf_{t,i} = x_{t,i} \cdot h_i \color{lightgray}\cdot \epsilon_{t,i}
   \end{equation*}
 
 \subsection{Abschreibung}
+
 \textbf{Schwache Zielkongruenz:}
   \begin{equation*}
-    E[KW_i] > 0 \iff \sum^{T_i}_{t=1} E[RG_{t,i}] > 0 \hspace{0.5cm} \forall\, t,i
+    E[KW_i] > 0 \iff \sum^{T_i}_{t=1} E[PM_{t,i}] > 0 \hspace{0.5cm} \forall\,i
   \end{equation*}
 \textbf{Umsetzung durch Abschreibungsverfahren:}
   \begin{equation*}
@@ -408,9 +412,10 @@ Economic Value Added (EVA), Cash Value Added (CVA)
   \end{equation*}
 
 \subsection{Relatives Beitragsverfahren}
+
 \textbf{Starke Zielkongruenz:}
   \begin{equation*}
-    E[KW_i] > 0 \iff E[RG_{t,i}^{\color{lightgray}RBV\color{black}}] > 0 \hspace{0.5cm} \forall\, t,i
+    E[KW_i] > 0 \iff E[PM_{t,i}] > 0 \hspace{0.5cm} \forall\, t,i
   \end{equation*}
 \textbf{Umsetzung durch relatives Beitragsverfahren:}
   \begin{equation*}
@@ -418,10 +423,11 @@ Economic Value Added (EVA), Cash Value Added (CVA)
   \end{equation*}
 
 \subsection{Annuitätenverfahren}
+
 \textbf{Perfekte Zielkongruenz:}
   \begin{align*}
     &E[KW_i] > E[KW_j]\\
-    \iff &E[RG_{t,i}] > E[RG_{t,j}] \hspace{0.5cm} \forall\, t,i,j,i \neq j
+    \iff & ( T_i = T_j \to E[PM_{t,i}] > E[PM_{t,j}]) \hspace{0.5cm} \forall\, t,i,j,i \neq j
   \end{align*}
 \textbf{Umsetzung durch Annuitätenverfahren:}
   \begin{equation*}
@@ -429,18 +435,27 @@ Economic Value Added (EVA), Cash Value Added (CVA)
   \end{equation*}
 
 \subsection{Bonusbanken}
+
 \textbf{Perfekte Zielkongruenz auch bei unterschiedlichen Laufzeiten:}
   \begin{align*}
     &E[KW_i] > E[KW_j]\\
-    \iff & E[RG^{BB}_{t,i}] > E[RG^{BB}_{t,j}] \hspace{0.5cm} \forall\, t,i,j,i \neq j
+    \iff & E[PM^{BB}_{t,i}] > E[PM^{BB}_{t,j}] \hspace{0.5cm} \forall\, t,i,j,i \neq j
   \end{align*}
 \textbf{Umsetzung durch Bonusbanken:}
-``Verlängere'' die kürzere Laufzeit. Wähle $\delta = \frac{A_j}{A_i}$, wenn $T_i < T_j$, 1 sonst.
+``Strecke'' die kürzere Laufzeit. Wähle $\delta = \frac{A_j}{A_i}$, wenn $T_i < T_j$, 1 sonst.
   \begin{equation*}
-    PM^{BB}_{t,i} = \delta \cdot RG^{ANV}_{t,i} = \delta \cdot A_{i} \cdot KW_i
+    PM^{BB}_{t,i} = \delta \cdot PM^{ANV}_{t,i} = \delta \cdot A_{i} \cdot KW_i
   \end{equation*}
 
-  
+%-------------------------------------------------------------------------------
+
+\appendix 
+\section{Vereinfachende Annahmen}
+$I=b_0=cf_0=KB_0=BIB_0$\\
+$bcf=ocf=cf$\\
+$ab=AB=AfA$  
+
+
 \end{multicols}
 \end{document}
 
