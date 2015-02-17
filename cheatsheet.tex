@@ -9,7 +9,7 @@
 \usepackage{wasysym}      % Blitz
 \usepackage{graphicx}
 \usepackage{xcolor}
-\KOMAoption{fontsize}{12pt}
+\KOMAoption{fontsize}{11pt}
 \usepackage{blindtext}
 \usepackage{tikz}
 \usepackage{enumitem}
@@ -156,20 +156,24 @@ exponientiellen Nutzenfunktionen im Einklang mit dem Bernulliding
 
 \subsection{Investitionsrechnung}
 
-Nach(Vor)schüssig bedeutet, dass Zahlungen direkt nach(vor) dem Zins 
-stattfinden. D.h. für den EW, dass ein mal weniger(mehr) verzinst wird und für 
+Nachschüssig bedeutet, dass Zahlungen am Ende einer Periode
+stattfinden. Vorschüssig am Anfang. D.h. für den nachschüssigen (vorschüssigen) EW, dass ein mal weniger(mehr) aufgeszinst wird und für 
 den BW, dass ein mal mehr(weniger) abgezinst wird.\\
 \textbf{Ewige Rente (Zahlungsbeginn k):}
   \begin{equation*}
-    KW = \sum^{\infty}_{t=\color{red}{\textbf{k}}}\frac{A}{(1+i)^t}=\frac{A}{i}(1+i)^{\color{red}{\textbf{1-k}}}
+    BW = \sum^{\infty}_{t=\color{red}{\textbf{k}}}\frac{A}{(1+i)^t}=\frac{A}{i}(1+i)^{\color{red}{\textbf{1-k}}}
   \end{equation*}
-\textbf{Ewige, nachschüssige Rente:}
+\textbf{Barwert ewiger (nachschüssiger) Rente:}
   \begin{equation*}
-    KW = \sum^{\infty}_{t=\color{red}{\textbf{1}}}\frac{A}{(1+i)^t}=\frac{A}{i}
+    BW = \sum^{\infty}_{t=\color{red}{\textbf{1}}}\frac{A}{(1+i)^t}=\frac{A}{i}
   \end{equation*}
-\textbf{Ewige, vorschüssige  Rente:}
+\textbf{Barwert ewiger, vorschüssiger  Rente:}
   \begin{equation*}
-    KW = \sum^{\infty}_{t=\color{red}{\textbf{0}}}\frac{A}{(1+i)^t}=\frac{A}{i}(1+i)^{\color{lightgray}{\textbf{1}}}
+    BW = \sum^{\infty}_{t=\color{red}{\textbf{0}}}\frac{A}{(1+i)^t}=\frac{A}{i}(1+i)^{\color{lightgray}{\textbf{1}}}
+  \end{equation*}
+\textbf{Barwert ewiger, wachsender Rente:}
+  \begin{equation*}
+    BW =\frac{A}{i-w}
   \end{equation*}
 \textbf{Konvergenz geometrischer Reihen:}
   \begin{equation*}\label{convergence}
@@ -180,22 +184,23 @@ den BW, dass ein mal mehr(weniger) abgezinst wird.\\
   \end{equation*}
 \textbf{Annuität}:\\
   \begin{equation*}
-    A = BW \cdot \color{cyan}ANF\color{black} = BW \color{cyan}\left(\frac{(1+i)^T \cdot i}{(1+i)^T-1}\right)\\
+    A = BW \left(\frac{(1+i)^T \cdot i}{(1+i)^T-1}\right)\\
   \end{equation*}
 \textbf{Rentenbarwert}:\\
   \begin{equation*}
-    BW = A \cdot \color{cyan}RBF\color{black} = A  \color{cyan}\left(\frac{(1+i)^T-1}{(1+i)^T \cdot i}\right)
+    BW = A  \left(\frac{(1+i)^T-1}{(1+i)^T \cdot i}\right)
+  \end{equation*}
+\textbf{Rentenbarwert (wachsend)}\\
+  \begin{equation*}
+    BW = A  \left(\frac{(1+i)^T-(1+w)^T}{(1+i)^T \cdot (i-w)}\right)= A  \left(\frac{q^T-g^T}{g^T \cdot (q-g)}\right)
   \end{equation*}
 \textbf{Rentenendwert}:\\
   \begin{equation*}
-    BW = A \cdot \color{cyan}REF\color{black} = A  \color{cyan}\left(\frac{(1+i)^T-1}{i}\right)
+    BW = A  \left(\frac{(1+i)^T-1}{i}\right)
   \end{equation*}  
 \textbf{BW $\sim$ EW:}
   \begin{equation*}\label{relation}
-    \begin{split}
-    &EW = BW (1+i)^{T}\\
-    \iff &BW = EW (1+i)^{-T} \\
-    \end{split}
+    EW = BW (1+i)^{T}  \iff BW = EW (1+i)^{-T} \\
   \end{equation*}
 \textbf{Interner Zins:}\label{internerzins}
   Es sei ($z_0, z_1, \dots, z_T$) ein Zahlungsstrom. Der interne Zins ist eine Zahl $i^*$ , die 
@@ -404,22 +409,29 @@ Investor mischt $M$ mit einem sicheren Wertpapier $f$ mit der Rendite $r_f$ . An
 
 \textbf{Schwache Zielkongruenz:}
   \begin{equation*}
-    E[KW_i] > 0 \iff \sum^{T_i}_{t=1} E[PM_{t,i}] > 0 \hspace{0.5cm} \forall\,i
+    E[KW_i] \lessgtr 0 \iff \sum^{T_i}_{t=1} E[PM_{t,i}] \lessgtr 0 \hspace{0.5cm} \forall\,i
   \end{equation*}
 \textbf{Umsetzung durch Abschreibungsverfahren:}
   \begin{equation*}
-    PM^{AB}_{t,i} = \underbrace{1}_{\alpha} \cdot cf_{t,i} - \underbrace{\frac{1}{T_i+r \cdot\left[1-\frac{t-1}{T_i})\right]}}_{\beta} \cdot b_{0,i}
+    PM^{AB}_{t,i} = \underbrace{1}_{\alpha} \cdot cf_{t,i} - \underbrace{\frac{1}{T_i}+r \cdot \left[1-\frac{t-1}{T_i}\right]}_{\beta} \cdot b_{0,i}
   \end{equation*}
 
 \subsection{Relatives Beitragsverfahren}
 
 \textbf{Starke Zielkongruenz:}
   \begin{equation*}
-    E[KW_i] > 0 \iff E[PM_{t,i}] > 0 \hspace{0.5cm} \forall\, t,i
+    E[KW_i] \lessgtr 0 \iff E[PM_{t,i}] \lessgtr 0 \hspace{0.5cm} \forall\, t,i
   \end{equation*}
 \textbf{Umsetzung durch relatives Beitragsverfahren:}
   \begin{equation*}
-    PM^{RBV}_{t,i} = \underbrace{1}_{\alpha} \cdot cf_{t,i} - \underbrace{\sum^{T_i}_{\tau=1}x_{t,i}(1+r)^{-\tau}}_{\beta} \cdot b_{0,i}
+    \begin{split}
+    PM^{RBV}_{t,i} &= \underbrace{1}_{\alpha} \cdot cf_{t,i} - \underbrace{\frac{x_{t,i}}{\sum^{T_i}_{\tau=1}\frac{x_{\tau,i}}{(1+r)^{\tau}}}}_{\beta} \cdot b_{0,i}\\
+      & = \beta_{t,i} \cdot KW_i
+    \end{split}
+  \end{equation*}
+\textbf{Kapitaldienst:}
+  \begin{equation*}
+    \beta_{t,i} \cdot b_0 = ab_{t,i} - i\cdot KB_{t-i}
   \end{equation*}
 
 \subsection{Annuitätenverfahren}
@@ -431,7 +443,10 @@ Investor mischt $M$ mit einem sicheren Wertpapier $f$ mit der Rendite $r_f$ . An
   \end{align*}
 \textbf{Umsetzung durch Annuitätenverfahren:}
   \begin{equation*}
-        PM^{ANV}_{t,i} = \underbrace{\frac{A_i}{x_{t,i}} \cdot \sum^{T_i}_{\tau=1}x_{t,i}(1+r)^{-\tau}}_{\alpha} \cdot cf_{t,i} - \underbrace{A_i}_{\beta} \cdot b_{0,i}
+    \begin{split}
+        PM^{ANV}_{t,i} &= \underbrace{\frac{ANF_i}{x_{t,i}} \cdot \sum^{T_i}_{\tau=1}\frac{x_{\tau,i}}{(1+r)^{\tau}}}_{\alpha} \cdot cf_{t,i} - \underbrace{ANF_i}_{\beta} \cdot b_{0,i}\\
+ & = ANF_i \cdot KW_i
+    \end{split}
   \end{equation*}
 
 \subsection{Bonusbanken}
@@ -442,7 +457,7 @@ Investor mischt $M$ mit einem sicheren Wertpapier $f$ mit der Rendite $r_f$ . An
     \iff & E[PM^{BB}_{t,i}] > E[PM^{BB}_{t,j}] \hspace{0.5cm} \forall\, t,i,j,i \neq j
   \end{align*}
 \textbf{Umsetzung durch Bonusbanken:}
-``Strecke'' die kürzere Laufzeit. Wähle $\delta = \frac{A_j}{A_i}$, wenn $T_i < T_j$, 1 sonst.
+``Strecke'' die kürzere Laufzeit. Wähle $\delta = \frac{ANF_j}{ANF_i}$, wenn $T_i < T_j$, 1 sonst.
   \begin{equation*}
     PM^{BB}_{t,i} = \delta \cdot PM^{ANV}_{t,i} = \delta \cdot A_{i} \cdot KW_i
   \end{equation*}
